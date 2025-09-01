@@ -98,4 +98,16 @@ class EntityStoreTest {
             ids.add(id);
         }
     }
+
+    @Test
+    void deleteEntity_shouldNotThrowForNegativeId() {
+        long negativeIdEntity = EntityUtil.setId(0L, -1);
+        assertDoesNotThrow(() -> store.deleteEntity(negativeIdEntity));
+    }
+
+    @Test
+    void contains_shouldReturnFalseForNegativeId() {
+        long negativeIdEntity = EntityUtil.setId(0L, -1);
+        assertFalse(store.contains(negativeIdEntity));
+    }
 }
