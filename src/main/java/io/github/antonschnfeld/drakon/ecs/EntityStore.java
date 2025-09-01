@@ -39,11 +39,15 @@ public class EntityStore {
     }
 
     public void deleteEntity(long entity) {
-        int id = EntityUtil.getId(entity);
-        if (id >= generations.size()) {
+        final int id = EntityUtil.getId(entity);
+        if (id < 0 || id >= generations.size()) {
             return;
         }
-        generations.set(id, generations.get(id) + 1); // increment generation
+        final int currentGen = generations.get(id);
+        if (currentGen != EntityUtil.getGeneration(entity)) {
+            return; // stale handle; ignore
+        }
+        generations.set(id, currentGen + 1); // increment generation (wraps naturally)
         freeIds.push(id); // recycle ID
     }
 }
