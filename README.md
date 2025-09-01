@@ -15,10 +15,9 @@ APIs are not stable yet. Expect breaking changes between minor versions.
 
 ## Project Status
 
-- [ ] Core entity management (IDs, versioning, alive checks)
+- [X] Core entity management (IDs, versioning, alive checks)
 - [ ] Archetypes & chunked SoA storage
 - [ ] Deterministic system execution
-- [ ] Event-driven systems
 - [ ] Parallel dependency-graph scheduler
 - [ ] Optimizations (primitive arrays, off-heap, cached queries)
 - [ ] Tooling & debugging utilities
