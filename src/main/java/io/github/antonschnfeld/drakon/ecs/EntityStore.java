@@ -14,8 +14,8 @@ public class EntityStore {
     }
 
     public boolean contains(long entity) {
-        int id = EntityUtil.getId(entity);
-        if (id >= generations.size()) {
+        final int id = EntityUtil.getId(entity);
+        if (id < 0 || id >= generations.size()) {
             return false;
         }
         return generations.get(id) == EntityUtil.getGeneration(entity);
