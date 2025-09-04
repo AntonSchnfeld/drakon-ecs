@@ -39,8 +39,8 @@ public class ComponentStore {
         return (T) set.get(id);
     }
 
-    public void removeComponent(long entity, Object component) {
-        SparseSet<?> set = components.get(component.getClass());
+    public void removeComponent(long entity, Class<?> component) {
+        SparseSet<?> set = components.get(component);
         if (set == null) {
             return;
         }
