@@ -1,6 +1,5 @@
 package io.github.antonschnfeld.drakon.ecs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EntityWorldImpl implements EntityWorld {
