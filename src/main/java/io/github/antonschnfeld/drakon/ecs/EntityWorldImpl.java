@@ -29,26 +29,41 @@ public class EntityWorldImpl implements EntityWorld {
 
     @Override
     public void addComponent(long entity, Object component) {
+        if (!entityStore.contains(entity)) {
+            return;
+        }
         componentStore.addComponent(entity, component);
     }
 
     @Override
     public <T> T getComponent(long entity, Class<T> componentType) {
+        if (!entityStore.contains(entity)) {
+            return null;
+        }
         return componentStore.getComponent(entity, componentType);
     }
 
     @Override
     public void removeComponent(long entity, Class<?> component) {
+        if (!entityStore.contains(entity)) {
+            return;
+        }
         componentStore.removeComponent(entity, component);
     }
 
     @Override
     public void removeComponents(long entity) {
+        if (!entityStore.contains(entity)) {
+            return;
+        }
         componentStore.removeComponents(entity);
     }
 
     @Override
     public void destroyEntity(long entity) {
+        if (!entityStore.contains(entity)) {
+            return;
+        }
         entityStore.deleteEntity(entity);
         componentStore.removeComponents(entity);
     }
