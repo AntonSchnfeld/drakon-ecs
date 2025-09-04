@@ -1,5 +1,6 @@
 package io.github.antonschnfeld.drakon.ecs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EntityWorldImpl implements EntityWorld {
@@ -24,6 +25,7 @@ public class EntityWorldImpl implements EntityWorld {
 
     @Override
     public List<Object> getComponents(long entity) {
+        if (!entityStore.contains(entity)) return new ArrayList<>();
         return componentStore.getComponents(entity);
     }
 

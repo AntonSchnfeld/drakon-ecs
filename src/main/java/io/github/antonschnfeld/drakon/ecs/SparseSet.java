@@ -14,14 +14,20 @@ public class SparseSet<T> {
     }
 
     public T get(int id) {
-        if (id >= sparse.size()) return null;
+        if (id < 0 || id >= sparse.size()) return null;
         int denseIdx = sparse.get(id);
         if (denseIdx == -1) return null;
         return components.get(denseIdx);
     }
 
     public void set(int id, T component) {
+        if (id < 0) throw new IllegalArgumentException("id must be >= 0");
         ensureCapacity(id);
+        int existing = sparse.get(id);
+        if (existing != -1) {
+            components.set(existing, component);
+            return;
+        }
         int denseIdx = dense.size();
         sparse.set(id, denseIdx);
         dense.add(id);
@@ -29,7 +35,7 @@ public class SparseSet<T> {
     }
 
     public void remove(int id) {
-        if (id >= sparse.size()) return;
+        if (id < 0 || id >= sparse.size()) return;
         int denseIdx = sparse.get(id);
         if (denseIdx == -1) return;
 
