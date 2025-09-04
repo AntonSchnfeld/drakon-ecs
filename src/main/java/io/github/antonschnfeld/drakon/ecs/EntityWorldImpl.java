@@ -17,6 +17,9 @@ public class EntityWorldImpl implements EntityWorld {
         long entity = entityStore.createEntity();
 
         for (int i = 0; i < components.length; i++) {
+            if (components[i] == null) {
+                throw new IllegalArgumentException("null components are not allowed");
+            }
             componentStore.addComponent(entity, components[i]);
         }
 
@@ -25,14 +28,19 @@ public class EntityWorldImpl implements EntityWorld {
 
     @Override
     public List<Object> getComponents(long entity) {
-        if (!entityStore.contains(entity)) return new ArrayList<>();
+        if (!entityStore.contains(entity)) {
+            throw new IllegalArgumentException("entity does not exist");
+        }
         return componentStore.getComponents(entity);
     }
 
     @Override
     public void addComponent(long entity, Object component) {
         if (!entityStore.contains(entity)) {
-            return;
+            throw new IllegalArgumentException("entity does not exist");
+        }
+        if (component == null) {
+            throw new IllegalArgumentException("null components are not allowed");
         }
         componentStore.addComponent(entity, component);
     }
@@ -40,7 +48,7 @@ public class EntityWorldImpl implements EntityWorld {
     @Override
     public <T> T getComponent(long entity, Class<T> componentType) {
         if (!entityStore.contains(entity)) {
-            return null;
+            throw new IllegalArgumentException("entity does not exist");
         }
         return componentStore.getComponent(entity, componentType);
     }
@@ -48,7 +56,7 @@ public class EntityWorldImpl implements EntityWorld {
     @Override
     public void removeComponent(long entity, Class<?> component) {
         if (!entityStore.contains(entity)) {
-            return;
+            throw new IllegalArgumentException("entity does not exist");
         }
         componentStore.removeComponent(entity, component);
     }
@@ -56,7 +64,7 @@ public class EntityWorldImpl implements EntityWorld {
     @Override
     public void removeComponents(long entity) {
         if (!entityStore.contains(entity)) {
-            return;
+            throw new IllegalArgumentException("entity does not exist");
         }
         componentStore.removeComponents(entity);
     }
@@ -64,7 +72,7 @@ public class EntityWorldImpl implements EntityWorld {
     @Override
     public void destroyEntity(long entity) {
         if (!entityStore.contains(entity)) {
-            return;
+            throw new IllegalArgumentException("entity does not exist");
         }
         entityStore.deleteEntity(entity);
         componentStore.removeComponents(entity);
