@@ -3,8 +3,8 @@
 A high-performance **Entity Component System (ECS)** framework for Java.  
 It is designed around:
 - **Archetypes & Chunked SoA storage** for cache-friendly iteration
-- **Versioned integer entities** with alive checks
-- **Flexible component model** (primitive arrays + object fallback)
+- **Versioned long entities** with live checks
+- **Flexible component model** primitive component makeup and object component support
 - **Event-driven system execution** with ordered event streams
 - **Parallel scheduling** via dependency graph analysis
 
@@ -23,8 +23,6 @@ APIs are not stable yet. Expect breaking changes between minor versions.
 - [ ] Optimizations (primitive arrays, off-heap, cached queries)
 - [ ] Tooling & debugging utilities
 - [ ] Stable 1.0.0 release
-
-See [ROADMAP.md](ROADMAP.md) for the detailed development plan.
 
 ---
 
