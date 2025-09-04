@@ -17,7 +17,7 @@ public class Main {
 
         ecs.destroyEntity(entity);
 
-        System.out.println("Destroyed: " + EntityUtil.toString(entity) + ": " + ecs.getComponents(entity));
+        System.out.println("Destroyed: " + EntityUtil.toString(entity));
 
         entity = ecs.createEntity(2, 3, "Different Components");
 
