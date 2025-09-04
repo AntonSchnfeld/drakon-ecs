@@ -23,10 +23,12 @@ abstract class EntityWorldTest {
         Assertions.assertTrue(ecs.isEntityAlive(entity));
     }
 
+    @Test
     public void dontCreateEntity_thenEntityDoesNotExist() {
         Assertions.assertFalse(ecs.isEntityAlive(0));
     }
 
+    @Test
     public void createManyEntities_thenEntitiesExists() {
         long[] entities = new long[MANY];
         for (int i = 0; i < entities.length; i++) {
@@ -38,6 +40,7 @@ abstract class EntityWorldTest {
         }
     }
 
+    @Test
     public void destroyEntity_thenEntityDoesNotExist() {
         long entity = Assertions.assertDoesNotThrow(() -> ecs.createEntity());
         Assertions.assertTrue(ecs.isEntityAlive(entity));
@@ -47,10 +50,12 @@ abstract class EntityWorldTest {
         Assertions.assertFalse(ecs.isEntityAlive(entity));
     }
 
+    @Test
     public void destroyNonExistentEntity_thenThrows() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> ecs.destroyEntity(0));
     }
 
+    @Test
     public void destroyManyEntities_thenEntitiesDontExists() {
         long[] entities = new long[MANY];
         for (int i = 0; i < entities.length; i++) {
@@ -68,6 +73,7 @@ abstract class EntityWorldTest {
         }
     }
 
+    @Test
     public void createEntityWithComponents_thenEntityHasComponents() {
         Object[] components = new Object[]{"Component 1", 15};
         long entity = Assertions.assertDoesNotThrow(() -> ecs.createEntity(components));
@@ -79,6 +85,7 @@ abstract class EntityWorldTest {
         Assertions.assertEquals(components[1], ecs.getComponent(entity, Integer.class));
     }
 
+    @Test
     public void createManyEntityWithComponents_thenEntitiesHaveComponents() {
         long[] entities = new long[MANY];
         String stringComponent = "Component 1";
@@ -99,6 +106,7 @@ abstract class EntityWorldTest {
         }
     }
 
+    @Test
     public void removeComponent_thenComponentIsRemoved() {
         long entity = Assertions.assertDoesNotThrow(() -> ecs.createEntity("Component"));
         Assertions.assertTrue(ecs.isEntityAlive(entity));
