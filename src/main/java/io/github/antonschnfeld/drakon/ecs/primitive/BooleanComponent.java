@@ -21,7 +21,7 @@ public interface BooleanComponent extends PrimitiveComponent {
 
     boolean get(long entity, int index);
 
-    boolean[] get(long entity);
-
     void get(long entity, boolean[] booleans);
+
+    boolean[] get(long entity);
 }

@@ -21,7 +21,7 @@ public interface IntComponent extends PrimitiveComponent {
 
     int get(long entity, int index);
 
-    int[] get(long entity);
-
     void get(long entity, int[] ints);
+
+    int[] get(long entity);
 }

@@ -21,7 +21,7 @@ public interface FloatComponent extends PrimitiveComponent {
 
     float get(long entity, int index);
 
-    float[] get(long entity);
-
     void get(long entity, float[] floats);
+
+    float[] get(long entity);
 }
