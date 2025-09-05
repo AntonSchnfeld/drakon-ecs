@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 abstract class EntityWorldTest {
     private static final int MANY = 100_000;
 
@@ -79,7 +81,7 @@ abstract class EntityWorldTest {
         long entity = Assertions.assertDoesNotThrow(() -> ecs.createEntity(components));
         Assertions.assertTrue(ecs.isEntityAlive(entity));
 
-        Assertions.assertArrayEquals(components, ecs.getComponents(entity).toArray());
+        Assertions.assertIterableEquals(Arrays.asList(components), ecs.getComponents(entity));
 
         Assertions.assertEquals(components[0], ecs.getComponent(entity, String.class));
         Assertions.assertEquals(components[1], ecs.getComponent(entity, Integer.class));
@@ -99,7 +101,7 @@ abstract class EntityWorldTest {
         for (int i = 0; i < entities.length; i++) {
             Assertions.assertTrue(ecs.isEntityAlive(entities[i]));
 
-            Assertions.assertArrayEquals(new Object[]{stringComponent, i}, ecs.getComponents(entities[i]).toArray());
+            Assertions.assertIterableEquals(Arrays.asList(stringComponent, i), ecs.getComponents(entities[i]));
 
             Assertions.assertEquals(stringComponent, ecs.getComponent(entities[i], String.class));
             Assertions.assertEquals(i, ecs.getComponent(entities[i], Integer.class));
@@ -112,7 +114,7 @@ abstract class EntityWorldTest {
         Assertions.assertTrue(ecs.isEntityAlive(entity));
         Assertions.assertDoesNotThrow(() -> ecs.removeComponent(entity, String.class));
         Assertions.assertNull(ecs.getComponent(entity, String.class));
-        Assertions.assertArrayEquals(new Object[0], ecs.getComponents(entity).toArray());
+        Assertions.assertTrue(ecs.getComponents(entity).isEmpty());
     }
 
     @Test
