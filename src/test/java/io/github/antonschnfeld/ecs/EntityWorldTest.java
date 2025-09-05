@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 abstract class EntityWorldTest {
     private static final int MANY = 100_000;
 
@@ -99,7 +101,7 @@ abstract class EntityWorldTest {
         for (int i = 0; i < entities.length; i++) {
             Assertions.assertTrue(ecs.isEntityAlive(entities[i]));
 
-            Assertions.assertArrayEquals(new Object[]{stringComponent, i}, ecs.getComponents(entities[i]).toArray());
+            Assertions.assertIterableEquals(Arrays.asList(stringComponent, i), ecs.getComponents(entities[i]));
 
             Assertions.assertEquals(stringComponent, ecs.getComponent(entities[i], String.class));
             Assertions.assertEquals(i, ecs.getComponent(entities[i], Integer.class));
