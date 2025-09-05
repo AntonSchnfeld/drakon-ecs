@@ -2,7 +2,10 @@ package io.github.antonschnfeld.drakon.ecs;
 
 import io.github.antonschnfeld.drakon.ecs.util.EntityUtil;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class EntityStore {
     private final Deque<Integer> freeIds;

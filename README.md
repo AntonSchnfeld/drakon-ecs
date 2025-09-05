@@ -2,6 +2,7 @@
 
 A high-performance **Entity Component System (ECS)** framework for Java.  
 It is designed around:
+
 - **Archetypes & Chunked SoA storage** for cache-friendly iteration
 - **Versioned integer entities** with alive checks
 - **Flexible component model** (primitive arrays + object fallback)
@@ -31,6 +32,7 @@ See [ROADMAP.md](ROADMAP.md) for the detailed development plan.
 
 This is intended as a **solo project** authored by me.  
 I’m unlikely to accept pull requests, but:
+
 - Discussions, design feedback, and benchmarking reports are very welcome.
 - Issues may be used for bug tracking or design notes.
 
